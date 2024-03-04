@@ -38,7 +38,8 @@
  */
 
 function getCircleArea(r) {
-  // Your implementation here
+  const area = Math.PI * Math.pow(r, 2);
+  return area;
 }
 
 /**
@@ -57,7 +58,13 @@ function getCircleArea(r) {
  */
 
 function greeting(name, time) {
-  // Your implementation here
+  if (time >= 9 && time <= 12) {
+    return `Good morning, ${name}!`;
+  } else if (time >= 13 && time <= 17) {
+    return `Good afternoon, ${name}!`;
+  } else {
+    return "Invalid time provided.";
+  }
 }
 
 /**
@@ -75,7 +82,13 @@ function greeting(name, time) {
  */
 
 function checkValue(val) {
-  // Your implementation here
+  if (val === null || val === undefined) {
+    return "Your input is a nullish value.";
+  } else if (!val) {
+    return "Your input is a falsy value.";
+  } else {
+    return "Your input is a truthy value.";
+  }
 }
 
 /**
@@ -91,7 +104,9 @@ function checkValue(val) {
  */
 
 function wordLengths(sentence) {
-  // Your implementation here
+  if (!sentence) return []; // Handle empty sentence case
+  const words = sentence.split(" ");
+  return words.map(word => word.length);
 }
 
 /**
@@ -108,7 +123,9 @@ function wordLengths(sentence) {
  */
 
 function capitalizeSentence(sentence) {
-  // Your implementation here
+  const words = sentence.split(" ");
+  const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+  return capitalizedWords.join(" ");
 }
 
 /**
@@ -126,7 +143,9 @@ function capitalizeSentence(sentence) {
  */
 
 function rotateArray(array, numRotations) {
-  // Your implementation here
+  const rotations = numRotations % array.length;
+  const rotatedArray = array.slice(-rotations).concat(array.slice(0, -rotations));
+  return rotatedArray;
 }
 
 /**
@@ -149,7 +168,15 @@ function rotateArray(array, numRotations) {
  */
 
 function animalClassify(type, weight) {
-  // Your implementation here
+  let size;
+  if (weight < 5) {
+    size = "small";
+  } else if (weight >= 5 && weight < 100) {
+    size = "big";
+  } else {
+    size = "huge";
+  }
+  return { type, size };
 }
 
 /**
@@ -176,7 +203,13 @@ function animalClassify(type, weight) {
  */
 
 function describePerson(person) {
-  // Your implementation here
+  const { name, age, gender, hobby } = person;
+  const pronoun = gender === "m" ? "He" : "She";
+  if (hobby) {
+    return `${name} is a ${age}-year-old ${gender === "m" ? "man" : "woman"}. ${pronoun} likes ${hobby}!`;
+  } else {
+    return `${name} is a ${age}-year-old ${gender === "m" ? "man" : "woman"}. ${pronoun} has no hobbies.`;
+  }
 }
 
 /**
@@ -199,7 +232,12 @@ function describePerson(person) {
  */
 
 function analyzeMarks(marks) {
-  // Your implementation here
+  const marksArray = Object.values(marks);
+  if (marksArray.length === 0) return [0, 0, 0]; // Handle empty marks object case
+  const lowest = Math.min(...marksArray);
+  const highest = Math.max(...marksArray);
+  const average = marksArray.reduce((acc, curr) => acc + curr, 0) / marksArray.length;
+  return [lowest, highest, parseFloat(average.toFixed(2))];
 }
 
 /**
@@ -221,7 +259,14 @@ function analyzeMarks(marks) {
  */
 
 function check(arr, target) {
-  // Your implementation here
+  const numMap = {};
+  for (let i = 0; i < arr.length; i++) {
+    const complement = target - arr[i];
+    if (numMap[complement] !== undefined) {
+      return [numMap[complement], i];
+    }
+    numMap[arr[i]] = i;
+  }
 }
 
 // Export the function for testing
